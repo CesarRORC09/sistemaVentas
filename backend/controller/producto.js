@@ -77,12 +77,18 @@ var controller={
     uploadImg:(req,res)=>{
         var id_producto=req.params.id;
         var fileName="imagen no subida";
-
+        console.log(req.files.img.path)
         if(req.files){
             var filePath=req.files.img.path;
-            var fileSplit=filePath.split('\\');
+            console.log(filePath)
+            
+        
+            var fileSplit=filePath.split('/');
             var fileNombre=fileSplit[1];
+            console.log(fileNombre);
+            
             var nameSplit=fileNombre.split('\.');
+            console.log(nameSplit[1])
             var fileExt=nameSplit[1];
             console.log(fileExt);
             
