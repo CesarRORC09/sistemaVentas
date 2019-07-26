@@ -23,7 +23,6 @@ var controller={
         cliente.password=bcrytp.hashSync(params.password,10);
         cliente.username=params.username;
         cliente.edad=params.edad;
-        cliente.created_at=params.created_at;
 
         cliente.save((err,cliente)=>{
             if(err) return res.status(500).send({mensaje:"error al guardar"});
@@ -79,20 +78,24 @@ var controller={
     },
     login:(req,res)=>{
         var pass=req.body.password;
-        Cliente.findOne({username:req.body.username},(err,cliente)=>{
+        Cliente.findOne({email:req.body.email},(err,cliente)=>{
             console.log(req.body);
             if(err) return res.status(500).send({mensaje:"Error al buscar cliente"});
     
             if(!cliente) return res.status(404).send({mensaje:"Usuario invalido"});
     
-            if(!bcrytp.compareSync(pass,cliente.password)) return res.status(404).send({mensaje:"Contraseña invalido"});
+            if(!bcrytp.compareSync(pass,cliente.password)) return res.status(404).send({mensaje:"Usuario o contraseña invalido"});
             
             let token= jwt.sign({
                 data:cliente
-            },process.env.SECRET,{expiresIn:'1h'});
+            },process.env.SECRET,{expiresIn:'5h'});
+            console.log(token)
 
             return res.status(200).send({ok:true,cliente:cliente,token:token});
         });
+    },
+    register:(req,res)=>{
+
     }
 }
 module.exports = controller;
