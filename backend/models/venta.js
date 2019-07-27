@@ -10,9 +10,14 @@ var ventaSchema=Schema({
         type:Schema.Types.ObjectId,
         ref:"cliente"
     },
-    carrito:{
-        type:Schema.Types.ObjectId,
-        ref:"carrito"
-    }
+    productos:[{
+        producto:{
+            type:Schema.Types.ObjectId,
+            ref:"producto"
+        },
+        cantidad:Number
+    }],
+    valor_total:Number,
+
 });
 module.exports = mongoose.model("venta",ventaSchema);

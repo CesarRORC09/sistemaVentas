@@ -87,7 +87,7 @@ var controller={
             var fileNombre=fileSplit[1];
             console.log(fileNombre);
             
-            var nameSplit=fileNombre.split('\.');
+            var nameSplit=fileNombre.split('.');
             console.log(nameSplit[1])
             var fileExt=nameSplit[1];
             console.log(fileExt);
@@ -121,7 +121,7 @@ var controller={
             }
         });
 
-    }
+    } 
 }
 
 module.exports =  controller;

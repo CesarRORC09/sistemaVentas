@@ -8,10 +8,11 @@ var router=express.Router();
 
 router.get('/testCliente',ver,ClienteController.test);
 router.post('/saveCliente',ClienteController.saveCliente);
-router.get('/getCliente/:id',ver,ClienteController.getCliente);
+router.get('/getCliente/:id',ClienteController.getCliente);
+router.get('/getPerfil/:id',ver,ClienteController.getCliente);
 router.get('/getClientes',ClienteController.getClientes);
 router.put('/updateCliente/:id',ClienteController.updateCliente);
-router.delete('/deleteCliente/:id',ver,ClienteController.deleteCliente);
+router.delete('/deleteCliente/:id',ClienteController.deleteCliente);
 router.post('/login',ClienteController.login);
 
 

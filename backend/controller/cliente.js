@@ -16,13 +16,15 @@ var controller={
         var cliente=new Cliente();
         var params=req.body;
 
-        cliente.email=params.email;
-        cliente.nombre=params.nombre;
-        cliente.a_paterno=params.a_paterno;
-        cliente.a_materno=params.a_materno;
-        cliente.password=bcrytp.hashSync(params.password,10);
-        cliente.username=params.username;
-        cliente.edad=params.edad;
+        
+            
+            cliente.email=params.email;
+            cliente.nombre=params.nombre;
+            cliente.a_paterno=params.a_paterno;
+            cliente.a_materno=params.a_materno;
+            cliente.password=bcrytp.hashSync(params.password,10);
+            cliente.username=params.username;
+            cliente.edad=params.edad;
 
         cliente.save((err,cliente)=>{
             if(err) return res.status(500).send({mensaje:"error al guardar"});
@@ -50,7 +52,7 @@ var controller={
 
             if(!cliente) return res.status(404).send({mensaje:"no se encontro cliente"});
 
-            return res.status(200).send(cliente);
+            return res.status(200).send({cliente:cliente});
         });
 
     },
@@ -86,12 +88,13 @@ var controller={
     
             if(!bcrytp.compareSync(pass,cliente.password)) return res.status(404).send({mensaje:"Usuario o contraseña invalido"});
             
+            let expiresIn='5h'
             let token= jwt.sign({
                 data:cliente
             },process.env.SECRET,{expiresIn:'5h'});
             console.log(token)
 
-            return res.status(200).send({ok:true,cliente:cliente,token:token});
+            return res.status(200).send({ok:true,cliente:cliente,token:token,expiresIn:expiresIn});
         });
     },
     register:(req,res)=>{
