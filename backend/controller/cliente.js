@@ -3,7 +3,7 @@ var Cliente=require('../models/cliente');
 //para encriptar datos del usuario
 var bcrytp=require('bcrypt');
 var jwt=require('jsonwebtoken');
-
+ 
 
 
 

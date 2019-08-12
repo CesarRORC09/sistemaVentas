@@ -1,5 +1,5 @@
 'use strict'
-var express=require('express');
+const express=require('express');
 var ClienteController=require('../controller/cliente');
 var {ver} = require('../middleware/autenticacion');
 

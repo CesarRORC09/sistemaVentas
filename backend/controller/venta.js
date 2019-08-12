@@ -37,6 +37,21 @@ var controller={
 
             return res.status(200).send(venta);
         });
+    },
+    getVenta:(req,res)=>{
+        var id_venta=req.params.id;
+        console.log(req.params.id)
+        if(id_venta==null) return res.status(404).send({mensaje:"El docuemneto no existe"});
+
+        Venta.findById(id_venta,(err,venta)=>{
+            if(err) return res.status(500).send({mensaje:"Error al buscar el producto"});
+
+            if(!venta) return res.status(404).send({mensaje:"No se encontro el producto"});
+
+            return res.status(200).send(venta);
+        });
+
     }
+    
 }
 module.exports = controller;

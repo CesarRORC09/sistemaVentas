@@ -1,6 +1,6 @@
 'use strict'
-var mongoose=require("mongoose");
-var app=require('./app');
+const mongoose=require("mongoose");
+const app=require('./app');
 require('./config/config');
 
 mongoose.Promise = global.Promise;

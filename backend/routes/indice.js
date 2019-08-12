@@ -1,6 +1,6 @@
-var express=require('express');
+const express=require('express');
 var app=express();
-var pre='/api';
+const pre='/api';
 var rutas_producto=require('./producto');
 var rutas_cliente=require('./cliente');
 var rutas_ventas=require('./venta');
